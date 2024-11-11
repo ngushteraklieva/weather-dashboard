@@ -1,26 +1,27 @@
-import "../styles/components/Forecast.scss"
-import HourlyForecast from "./HourlyForecast"
-import DailyForecast from "./DailyForecast"
+import HourlyForecastWidget from './HourlyForecast';
+import DailyForecastWidget from './DailyForecast';
+import '../styles/components/Forecast.scss';
+import HorizontallyScrollable from './HorizontallyScrollable';
 
-function Forecast({title, type, data}) {
-    return (
-        <div className="Forecast">
-           <div className="forecast-container">
-                <h3>{title}</h3>
-                <div className="widget-container">
-                    {data.map((singleData)=>(
-                        <div>
-                            {type === 'hourly' ? (
-                                <HourlyForecast data={singleData}/>
-                            ) : (
-                                <DailyForecast data={singleData}/> 
-                            )}
-                        </div>
-                    ))}
-                </div>
-            </div> 
-        </div>
-    );
+function Forecast({ title, type, data }) {
+  return (
+    <div className='Forecast'>
+      <div className='forecast-container'>
+        <h3>{title}</h3>
+        <HorizontallyScrollable className='widget-container'>
+          {data.map((singleData) => (
+            <div key={singleData.date || singleData.day}>
+              {type === 'hourly' ? (
+                <HourlyForecastWidget data={singleData} />
+              ) : (
+                <DailyForecastWidget data={singleData} />
+              )}
+            </div>
+          ))}
+        </HorizontallyScrollable>
+      </div>
+    </div>
+  );
 }
 
 export default Forecast;
