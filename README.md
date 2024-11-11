@@ -13,8 +13,7 @@ git clone "https://github.com/yourusername/weather-dashboard.git"
 cd weather-dashboard
 
 
-**Install the dependencies:
-**
+Install the dependencies:
 
 npm install
 
